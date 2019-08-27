@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 
+use Auth;
+
 class UsersController extends Controller
 {
     public function  create(){
@@ -31,6 +33,8 @@ class UsersController extends Controller
     		"password"=>'required|confirmed|min:6'
 
     	]);
+
+    	 Auth::login($user);
 
     	session()->flash('success','欢迎你，你将会成为我的好朋友~！');
 

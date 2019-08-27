@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+
 class SessionsController extends Controller
 {
     public function create(){
@@ -28,5 +30,13 @@ class SessionsController extends Controller
     	}
 
     	
+    }
+
+    public function destroy(){
+        Auth::logout();
+
+        session()->flash('success',"拜拜您嘞！不送！");
+
+        return redirect('login');
     }
 }

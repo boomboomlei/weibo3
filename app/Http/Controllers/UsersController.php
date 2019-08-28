@@ -8,6 +8,8 @@ use App\Models\User;
 
 use Auth;
 
+use Mail;
+
 class UsersController extends Controller
 {
 
@@ -48,9 +50,12 @@ class UsersController extends Controller
     	 // Auth::login($user);
     	$this->sendEmailConfirmationTo($user);
 
-    	session()->flash('success','欢迎你，你将会成为我的好朋友~！');
+    	// session()->flash('success','欢迎你，你将会成为我的好朋友~！');
 
-    	return redirect()->route('users.show',[$user]);
+    	// return redirect()->route('users.show',[$user]);
+    	
+    	session()->flash('success','验证邮件已发送到你的注册邮箱上，请注意查收。');
+    	return redirect('/');
     }
 
     public function edit(User $user)
